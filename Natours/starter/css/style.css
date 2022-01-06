@@ -44,6 +44,12 @@ body{
 .heading-primary{
     color: #fff;
     text-transform: uppercase;
+
+    /* 
+    В css есть баг с анимацией, в конце элемент приподнимается на пару пикселей вверх, чтобы этого избежать, используется свойство backface-visibility: hidden;
+    */
+    backface-visibility: hidden;
+
 }
 
 .heading-primary-main {
@@ -52,6 +58,19 @@ body{
     font-size: 60px;
     font-weight: 400;
     letter-spacing: 35px;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    /*
+    Через сколько секунд начнется анимация
+    animation-delay: 1s;
+
+    Сколько раз будет повторяться анимация
+    animation-iteration-count: 3;
+
+    Устанавливает время исполнения для каждого отдельного отрезка анимации
+    animation-timing-function: ease-out
+
+    */
 }
 
 .heading-primary-sub{
@@ -59,8 +78,38 @@ body{
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 17.4px;
+    animation-name: moveInRight;
+    animation-duration: 1s;
 }
 
 @keyframes moveInLeft {
-    
+    0% {
+        opacity: 0;
+        transform: translateX(-100px)
+    }
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0)
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px)
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0)
+    }
 }
